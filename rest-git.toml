@@ -1,0 +1,22 @@
+[Repositories]
+
+[Repositories.Firebase]
+name = "firebase"
+url = "https://github.com/firebase/firebase-js-sdk.git"
+
+[Repositories.Symfony]
+name = "symfony"
+url = "https://github.com/symfony/symfony.git"
+
+[Repositories.Logstash]
+name = "Logstash"
+url = "https://github.com/elastic/logstash.git"
+
+[Repositories.MechanicalSoup]
+name = "MechanicalSoup"
+url = "https://github.com/MechanicalSoup/MechanicalSoup.git"
+
+
+[Repositories.the-book]
+name = "the-book"
+url = "https://github.com/trimstray/the-book-of-secret-knowledge.git"

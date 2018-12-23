@@ -5,6 +5,8 @@ REST interface around your git repo
 # sample config file
 
 ```toml
+RefreshInterval = "5m"
+
 [Repositories]
 
 [Repositories.Firebase]
@@ -22,7 +24,6 @@ url = "https://github.com/elastic/logstash.git"
 [Repositories.MechanicalSoup]
 name = "MechanicalSoup"
 url = "https://github.com/MechanicalSoup/MechanicalSoup.git"
-
 
 [Repositories.the-book]
 name = "the-book"
@@ -65,8 +66,6 @@ Lists tags / branches for the particular repo. Sample output:
 ```
 
 # TODO
-
-- [ ] add time based fetch
 - [ ] add per project fetch
 - [ ] add git log
 - [ ] support in memory checkout

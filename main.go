@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"time"
 
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/middleware/logger"
@@ -20,6 +21,21 @@ func main() {
 	}
 	repos := make(map[string]*git.Repository)
 	checkoutRepos(*config, repos)
+
+	if config.RefreshInterval != "" {
+		i, err := time.ParseDuration(config.RefreshInterval)
+		if err != nil {
+			log.Println("Couldn't parse RefreshInterval format", err)
+		}
+
+		go func() {
+			for {
+				time.Sleep(i)
+				log.Println("Clock based fetch...")
+				fetchRepos(repos)
+			}
+		}()
+	}
 
 	app := iris.Default()
 	app.Use(recover.New())

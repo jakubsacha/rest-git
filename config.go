@@ -7,7 +7,8 @@ import (
 )
 
 type Config struct {
-	Repositories map[string]ConfigRepo
+	Repositories    map[string]ConfigRepo
+	RefreshInterval string
 }
 
 type ConfigRepo struct {

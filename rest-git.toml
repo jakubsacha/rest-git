@@ -1,3 +1,5 @@
+RefreshInterval = "5m"
+
 [Repositories]
 
 [Repositories.Firebase]
@@ -15,7 +17,6 @@ url = "https://github.com/elastic/logstash.git"
 [Repositories.MechanicalSoup]
 name = "MechanicalSoup"
 url = "https://github.com/MechanicalSoup/MechanicalSoup.git"
-
 
 [Repositories.the-book]
 name = "the-book"

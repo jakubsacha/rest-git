@@ -66,8 +66,8 @@ Lists tags / branches for the particular repo. Sample output:
 
 # TODO
 
-[] add time based fetch
-[] add per project fetch
-[] add git log
-[] support in memory checkout
-[] start webserver before checkouts are ready
+- [ ] add time based fetch
+- [ ] add per project fetch
+- [ ] add git log
+- [ ] support in memory checkout
+- [ ] start webserver before checkouts are ready

@@ -72,5 +72,7 @@ Lists tags / branches for the particular repo. Sample output:
 ## TODO
 
 - [ ] add git log
+- [ ] add git diff
 - [ ] support in memory checkout
 - [ ] start webserver before checkouts are ready
+- [ ] fix reload config endpoint

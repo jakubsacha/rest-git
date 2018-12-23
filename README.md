@@ -2,7 +2,7 @@
 
 REST interface around your git repo
 
-# sample config file
+## Sample config file
 
 ```toml
 RefreshInterval = "5m"
@@ -30,7 +30,7 @@ name = "the-book"
 url = "https://github.com/trimstray/the-book-of-secret-knowledge.git"
 ```
 
-# Available endpoints
+## Available endpoints
 
 ### /list
 
@@ -38,7 +38,11 @@ Lists all tracked repositories
 
 ### /fetch
 
-Update checkouts with the recent changes
+Update all checkouts with the recent changes
+
+### /{repo-id}/fetch
+
+Update selected repository with the recent changes
 
 ### /{repo-id}/branches
 
@@ -65,8 +69,8 @@ Lists tags / branches for the particular repo. Sample output:
 }
 ```
 
-# TODO
-- [ ] add per project fetch
+## TODO
+
 - [ ] add git log
 - [ ] support in memory checkout
 - [ ] start webserver before checkouts are ready

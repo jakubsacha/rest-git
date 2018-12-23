@@ -10,11 +10,7 @@ import (
 	git "gopkg.in/src-d/go-git.v4"
 )
 
-var (
-	repos map[string]*git.Repository
-)
-
-func main() {
+func initialise() (map[string]*git.Repository, *Config) {
 	config, err := reloadConfig()
 	if err != nil {
 		log.Fatalf("Could not parse config file %v", err)
@@ -36,6 +32,12 @@ func main() {
 			}
 		}()
 	}
+
+	return repos, config
+}
+
+func main() {
+	repos, config := initialise()
 
 	app := iris.Default()
 	app.Use(recover.New())
@@ -81,17 +83,18 @@ func main() {
 		ctx.JSON(iris.Map{"status": "OK", "details": details})
 	})
 
+	app.Get("/{name:string repoExists()}/fetch", func(ctx iris.Context) {
+		name := ctx.Params().Get("name")
+		details := fetchRepo(name, repos[name])
+		ctx.JSON(iris.Map{"status": "OK", "details": details})
+	})
+
 	app.Get("/health", func(ctx iris.Context) {
 		ctx.JSON(iris.Map{"status": "OK"})
 	})
 
 	app.Get("/reload", func(ctx iris.Context) {
-		config, err = reloadConfig()
-		if err != nil {
-			ctx.StatusCode(501)
-			ctx.JSON(iris.Map{"status": "error", "description": err})
-			return
-		}
+		repos, config = initialise()
 		ctx.JSON(iris.Map{"status": "OK"})
 	})
 

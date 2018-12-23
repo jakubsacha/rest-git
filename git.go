@@ -46,21 +46,23 @@ func fetchRepos(repos map[string]*git.Repository) []string {
 	var details []string
 	log.Println("Fetching changes from git")
 	for name, repo := range repos {
-		log.Println("Fetching changes for repo", name)
-		err := repo.Fetch(&git.FetchOptions{})
-		if err != nil {
-			if reflect.TypeOf(err).String() == "NoErrAlreadyUpToDate" {
-				details = append(details, "Repository %s status: Nothing to fetch")
-			} else {
-				details = append(details, fmt.Sprintf("Repository %s status: %v", name, err))
-				log.Println(err)
-			}
-		} else {
-			details = append(details, "Repository %s status: Updated")
-		}
+		details = append(details, fetchRepo(name, repo))
 	}
-
 	return details
+}
+
+func fetchRepo(name string, repo *git.Repository) string {
+	log.Println("Fetching changes for repo", name)
+	err := repo.Fetch(&git.FetchOptions{})
+	if err != nil {
+		if reflect.TypeOf(err).String() == "NoErrAlreadyUpToDate" {
+			return "Repository %s status: Nothing to fetch"
+		}
+		log.Println(err)
+		return fmt.Sprintf("Repository %s status: %v", name, err)
+	} else {
+		return "Repository %s status: Updated"
+	}
 }
 
 func listRemoteRefs(repos map[string]*git.Repository, name, prefix string) ([]*branch, error) {

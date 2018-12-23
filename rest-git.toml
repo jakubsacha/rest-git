@@ -1,4 +1,4 @@
-RefreshInterval = "5m"
+RefreshInterval = "2s"
 
 [Repositories]
 
